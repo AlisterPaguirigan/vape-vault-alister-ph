@@ -176,7 +176,6 @@
 
         .flavor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 50px; scroll-margin-top: 100px; }
         
-        /* DITO ANG PAGBABAGO SA ANIMATION */
         .flavor-card { 
             background: var(--card-bg); 
             border-radius: 20px; 
@@ -185,27 +184,27 @@
             text-align: center; 
             padding-bottom: 20px; 
             position: relative; 
-            transition: opacity 0.6s ease, filter 0.6s ease, transform 0.4s ease; 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
             opacity: 1; 
-            filter: grayscale(0) brightness(1);
         }
-        /* Style para sa naka "fade out" o dim */
+        
         .flavor-card.dimmed {
-            opacity: 0.2;
-            filter: grayscale(0.8) brightness(0.5);
-            transform: scale(0.95);
-            pointer-events: none; /* Hindi clickable kapag malabo */
+            opacity: 0.15;
+            filter: grayscale(1) blur(2px);
+            transform: scale(0.9);
+            pointer-events: none;
         }
-        /* Highlight kapag naka-fade in */
+        
         .flavor-card.highlight {
             opacity: 1;
-            filter: grayscale(0) brightness(1.2);
+            filter: grayscale(0) brightness(1.1);
             transform: scale(1.05);
             border-color: var(--neon-pink);
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.4);
+            z-index: 5;
         }
 
-        .flavor-card:hover { border-color: var(--neon-pink); transform: translateY(-5px); }
+        .flavor-card:hover:not(.dimmed) { border-color: var(--neon-pink); transform: translateY(-5px); }
         .flavor-img { width: 100%; height: 240px; object-fit: cover; }
         .pod-stock-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); padding: 5px 10px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; border: 1px solid var(--gold); z-index: 10; }
         .f-name { font-weight: bold; font-size: 1.3rem; color: var(--neon-pink); margin: 15px 0 5px 0; }
@@ -415,15 +414,15 @@
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Solid delivery, napaka smooth ng transaction!"</p><span class="reviewer-name">— Shine</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Ganda ng design ng V4, head turner sa school."</p><span class="reviewer-name">— Tatat</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"The best pods flavor ever. Black Wave is life!"</p><span class="reviewer-name">— Jonah</span></div>
-            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Lakas ng hatak ng boost mode. Highly recommended!"</p><span class="reviewer-name">— Bitoy</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Lasang lasa yung pods lalo na kung naka v4-battery ka. Highly recommended!"</p><span class="reviewer-name">— Bitoy</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Dito na ko lagi kukuha. Bait ni seller."</p><span class="reviewer-name">— Jasper</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Sulit ang price, quality talaga ang items."</p><span class="reviewer-name">— Christian</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Sobrang ice ng menthol flavors, sarap sa lalamunan."</p><span class="reviewer-name">— Elaiza</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Pang-malakasan yung 25k puffs, tagal maubos."</p><span class="reviewer-name">— Isaac</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Ganda ng loyalty system, malapit na ko magka free!"</p><span class="reviewer-name">— Zharra</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Quick meetup and very professional transactions."</p><span class="reviewer-name">— Rexie</span></div>
-            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Very Baguio flavor is super legit. Parang kumakain ng strawberry."</p><span class="reviewer-name">— Luigi</span></div>
-            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Safe yung items, balot na balot. Salamat Vault!"</p><span class="reviewer-name">— Mon</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Yung Very Baguio Sobrang tamis. Para kang kumakain ng strawberry."</p><span class="reviewer-name">— Luigi</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Safe yung items, balot na balot. Salamat Alister!"</p><span class="reviewer-name">— Mon</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Responsive sa messenger, bilis sumagot sa inquiries."</p><span class="reviewer-name">— Vincent</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"The only vape shop I trust in 2026."</p><span class="reviewer-name">— Jxbert</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"No leak issues, high quality talaga ang build."</p><span class="reviewer-name">— Nush</span></div>
@@ -435,12 +434,19 @@
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Smooth hit, zero throat irritation."</p><span class="reviewer-name">— John Rayven</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Order received, exactly as described."</p><span class="reviewer-name">— Enteng</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"The best customer support ever."</p><span class="reviewer-name">— Kai</span></div>
-            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Lakas ng flavor ng banana! Panalo."</p><span class="reviewer-name">— Bana</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Ansarap nung banana flavor, kahit anong flavor ang lasa talaga e."</p><span class="reviewer-name">— Bana</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Recommended seller, mabilis kausap."</p><span class="reviewer-name">— Philip</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Legit na legit ang items dito!"</p><span class="reviewer-name">— Gerald</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Fast and smooth transaction, elite level talaga."</p><span class="reviewer-name">— Leonard</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Ganda ng selection, Black Edition quality."</p><span class="reviewer-name">— Anthony</span></div>
             <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Sulit ang bawat stamp, worth it ang paghihintay."</p><span class="reviewer-name">— Anya</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"The best talaga service dito sa Elite Hub."</p><span class="reviewer-name">— Raprap</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Sarap ng juice, legit na malakas ang menthol."</p><span class="reviewer-name">— Cyrus</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Quality items and very fast transaction."</p><span class="reviewer-name">— Jared</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Solid ng Black Edition, di nagle-leak!"</p><span class="reviewer-name">— Yanyan</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Highly recommended ko talaga si Alister, Sinisigurado na quality ang pod!."</p><span class="reviewer-name">— Rhoddel</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Smooth transaction as always. Salamat boss!"</p><span class="reviewer-name">— Jaycee</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Sulit ang bawat order, elite talaga."</p><span class="reviewer-name">— Chokoy</span></div>
         </div>
     </section>
 </div>
@@ -472,8 +478,15 @@
 </footer>
 
 <script>
+    // Database ng Loyalty (Updated with new users)
     const loyaltyData = {
-        "shine": 1, "tatat": 2, "jonah": 1, "bitoy": 2, "jasper": 3, "christian": 2, "elaiza": 1, "isaac": 4, "zharra": 6, "rexie": 2, "luigi": 2, "mon": 1, "vincent": 3, "jxbert": 4, "nush": 1, "rho james": 2, "mark": 1, "ivy": 1, "xclint": 2, "trisha": 1, "john rayven": 1, "enteng": 1, "kai": 1, "anya": 0, "bana": 1, "philip": 2, "gerald": 1, "leonard": 1, "anthony": 1, "alister paguirigan": 11 
+        "shine": 1, "tatat": 2, "jonah": 1, "bitoy": 2, "jasper": 3, "christian": 2, 
+        "elaiza": 1, "isaac": 4, "zharra": 6, "rexie": 2, "luigi": 2, "mon": 1, 
+        "vincent": 3, "jxbert": 4, "nush": 1, "rho james": 2, "mark": 1, "ivy": 1, 
+        "xclint": 2, "trisha": 1, "john rayven": 1, "enteng": 1, "kai": 1, "anya": 0, 
+        "bana": 1, "philip": 2, "gerald": 1, "leonard": 1, "anthony": 1, 
+        "raprap": 1, "cyrus": 1, "jared": 0, "yanyan": 0, "rhoddel": 1, "jaycee": 2, "chokoy": 1,
+        "alister paguirigan": 11 
     };
 
     function processInput() {
@@ -496,57 +509,39 @@
 
         if (loyaltyData.hasOwnProperty(input)) {
             let s = loyaltyData[input];
-            let html = `<div class="stamp-container">`;
-            for(let i=1; i<=12; i++) { html += `<div class="stamp-slot ${i <= s ? 'stamp-active' : ''}">${i <= s ? '✔' : i}</div>`; }
-            display.className = "success-res"; display.style.textAlign = "center";
-            
-            display.innerHTML = `
-                <div style="color:var(--gold); font-family:'Orbitron'; font-size:1.1rem; margin-bottom:10px;">
-                    ✅ACCESS GRANTED<br>
-                    Customer: <span style="color:#fff;">${inputRaw.toUpperCase()}</span> 
-                    <span style="color:var(--gold); margin-left:10px;">${s} / 12</span>
-                </div>
-                ${html}</div>`;
+            let html = `<div style="margin-bottom:10px; color:#fff;">HELLO, <b style="color:var(--gold); text-transform:uppercase;">${inputRaw}</b>!</div><div class="stamp-container">`;
+            for(let i=1; i<=12; i++) { 
+                html += `<div class="stamp-slot ${i <= s ? 'stamp-active' : ''}">${i <= s ? '✓' : i}</div>`;
+            }
+            html += `</div><p style="font-size:0.8rem; margin-top:15px;">You have <b>${s}</b> stamps. ${12-s} more for a <b>FREE POD</b>!</p>`;
+            display.className = "success-res"; display.innerHTML = html;
         } else {
-            display.className = "error-res";
-            display.innerHTML = "❌ PROFILE NOT FOUND<br><small>Verify your name with Alister to register.</small>";
+            display.className = "error-res"; display.innerHTML = "NAME NOT FOUND. Please check spelling or message Admin to register.";
         }
     }
 
-    /* BAGONG FILTER LOGIC: FADE IN/OUT (DIM) LANG */
     function filterFlavors(type) {
         const cards = document.querySelectorAll('.flavor-card');
-        
         cards.forEach(card => {
-            const cardType = card.getAttribute('data-type');
-            
             if (type === 'all') {
-                // Ibalik lahat sa normal
+                card.classList.remove('dimmed', 'highlight');
+            } else if (card.getAttribute('data-type') === type) {
                 card.classList.remove('dimmed');
-                card.classList.remove('highlight');
+                card.classList.add('highlight');
             } else {
-                if (cardType === type) {
-                    // Ito yung target category: Fade In / Highlight
-                    card.classList.remove('dimmed');
-                    card.classList.add('highlight');
-                } else {
-                    // Ito yung hindi kasali: Fade Out / Dim
-                    card.classList.remove('highlight');
-                    card.classList.add('dimmed');
-                }
+                card.classList.add('dimmed');
+                card.classList.remove('highlight');
             }
         });
     }
 
-    function openModal() { document.getElementById('paymentModal').style.display = 'block'; }
-    function closeModal() { document.getElementById('paymentModal').style.display = 'none'; resetModal(); }
-    function showQR() { document.getElementById('payment-options').style.display = 'none'; document.getElementById('qr-section').style.display = 'block'; }
-    function resetModal() { document.getElementById('payment-options').style.display = 'block'; document.getElementById('qr-section').style.display = 'none'; }
-    function goToMessenger() { window.open('https://m.me/Alisterpaguirigan9', '_blank'); }
-    
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('paymentModal')) closeModal();
-    }
+    function openModal() { document.getElementById("paymentModal").style.display = "block"; }
+    function closeModal() { document.getElementById("paymentModal").style.display = "none"; resetModal(); }
+    function showQR() { document.getElementById("payment-options").style.display = "none"; document.getElementById("qr-section").style.display = "block"; }
+    function resetModal() { document.getElementById("payment-options").style.display = "block"; document.getElementById("qr-section").style.display = "none"; }
+    function goToMessenger() { window.open("https://m.me/Alisterpaguirigan9", "_blank"); }
+
+    window.onclick = function(event) { if (event.target == document.getElementById("paymentModal")) closeModal(); }
 </script>
 
 </body>
