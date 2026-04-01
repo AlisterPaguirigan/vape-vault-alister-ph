@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE VAPE VAULT | Elite Hub 2026</title>
+    
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="apple-touch-icon" href="logo.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff007f;
+            --neon-purple: #7000ff;
+            --gold: #daa520;
+            --bg-dark: #050505;
+            --card-bg: #111;
+            --gcash-blue: #0078FF;
+            --ice-blue: #00f2fe;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0; padding: 0;
+            overflow-x: hidden;
+        }
+
+        .site-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 10px var(--neon-pink));
+            animation: pulseLogo 3s infinite ease-in-out;
+        }
+        @keyframes pulseLogo {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px var(--neon-pink)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 20px var(--neon-purple)); }
+        }
+
+        .announcement-bar {
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
+            color: white; text-align: center; padding: 10px; font-family: 'Orbitron';
+            font-size: 0.75rem; letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #222;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Orbitron';
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .nav-menu a:hover {
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+            background: rgba(255, 0, 127, 0.1);
+        }
+
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+
+        header {
+            text-align: center; padding: 40px 20px;
+            background: radial-gradient(circle, rgba(112,0,255,0.15) 0%, transparent 70%);
+        }
+        header h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 3.5rem; letter-spacing: 15px;
+            margin: 0; text-shadow: 0 0 20px var(--neon-pink);
+        }
+        header h1 span { color: var(--neon-pink); }
+
+        .search-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--neon-purple);
+            border-radius: 20px; padding: 30px; text-align: center;
+            margin-bottom: 60px; backdrop-filter: blur(10px);
+            scroll-margin-top: 100px;
+        }
+        .search-box { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        input {
+            padding: 15px 25px; border-radius: 30px; border: 1px solid #333;
+            background: #000; color: #fff; width: 300px; font-family: inherit;
+        }
+        .search-btn {
+            padding: 15px 35px; border-radius: 30px; border: none;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+            color: #fff; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+
+        #result-display { 
+            margin-top: 20px; 
+            font-family: 'Orbitron'; 
+            padding: 20px; 
+            border-radius: 15px; 
+            display: none; 
+            line-height: 1.6;
+            text-align: center; 
+        }
+        .success-res { border: 1px solid var(--gold); background: rgba(218, 165, 32, 0.1); color: var(--gold); }
+        .error-res { border: 1px solid #ff4444; background: rgba(255, 68, 68, 0.1); color: #ff4444; }
+
+        .stamp-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+        .stamp-slot { width: 35px; height: 35px; border-radius: 50%; border: 2px dashed #444; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #444; }
+        .stamp-active { border: 2px solid var(--gold); background: var(--gold); color: #000; box-shadow: 0 0 10px var(--gold); font-weight: bold; }
+
+        .v4-luxury {
+            display: flex; flex-wrap: wrap; gap: 40px; align-items: center;
+            background: linear-gradient(180deg, rgba(112, 0, 255, 0.1) 0%, rgba(5, 5, 5, 1) 100%);
+            border-radius: 40px; padding: 50px; border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px; animation: pulseGlow 5s infinite;
+            scroll-margin-top: 100px;
+        }
+        @keyframes pulseGlow { 0%, 100% { border-color: rgba(255,255,255,0.1); } 50% { border-color: var(--neon-purple); } }
+        
+        .v4-visuals { flex: 1; text-align: center; min-width: 300px; }
+        .v4-visuals img { width: 100%; max-width: 450px; filter: drop-shadow(0 0 30px rgba(112,0,255,0.6)); animation: float 4s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        .v4-info { flex: 1.2; min-width: 300px; }
+        .v4-info h2 { font-family: 'Orbitron'; font-size: 3rem; margin: 5px 0 10px 0; }
+        
+        .compatibility-glow {
+            color: var(--ice-blue); font-size: 0.9rem; font-weight: bold; margin: 15px 0;
+            display: block; font-family: 'Orbitron'; letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--ice-blue);
+            border: 1px solid var(--ice-blue); padding: 10px; border-radius: 10px;
+            background: rgba(0, 242, 254, 0.05);
+        }
+
+        .stock-tag {
+            display: inline-block; padding: 6px 12px; border-radius: 5px; font-size: 0.7rem;
+            font-weight: bold; margin: 5px 5px 5px 0; border: 1px solid var(--gold);
+            font-family: 'Orbitron'; letter-spacing: 1px; color: var(--gold);
+            background: rgba(218, 165, 32, 0.1);
+        }
+        .sold-out-tag { border-color: #ff4444; color: #ff4444; background: rgba(255, 68, 68, 0.1); }
+
+        .manual-box {
+            background: rgba(255, 255, 255, 0.05); border-left: 4px solid var(--neon-pink);
+            padding: 20px; border-radius: 0 15px 15px 0; margin: 20px 0;
+        }
+        .manual-box h4 { font-family: 'Orbitron'; color: var(--neon-pink); margin: 0 0 10px 0; }
+        .manual-box p { color: #ccc; font-size: 0.85rem; margin: 5px 0; line-height: 1.4; }
+
+        .price-tag {
+            font-family: 'Orbitron'; color: #fff; background: rgba(255, 255, 255, 0.1);
+            padding: 5px 15px; border-radius: 10px; display: inline-block; margin: 10px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .quiz-section { text-align: center; margin-bottom: 40px; padding: 20px; background: rgba(0, 242, 254, 0.05); border-radius: 20px; border: 1px solid #222; }
+        .quiz-btn { background: #111; border: 1px solid #333; color: #fff; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-family: 'Orbitron'; font-size: 0.7rem; margin: 5px; transition: 0.3s; }
+        .quiz-btn:hover { border-color: var(--ice-blue); color: var(--ice-blue); }
+
+        .flavor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 50px; scroll-margin-top: 100px; }
+        
+        /* DITO ANG PAGBABAGO SA ANIMATION */
+        .flavor-card { 
+            background: var(--card-bg); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            border: 1px solid #222; 
+            text-align: center; 
+            padding-bottom: 20px; 
+            position: relative; 
+            transition: opacity 0.6s ease, filter 0.6s ease, transform 0.4s ease; 
+            opacity: 1; 
+            filter: grayscale(0) brightness(1);
+        }
+        /* Style para sa naka "fade out" o dim */
+        .flavor-card.dimmed {
+            opacity: 0.2;
+            filter: grayscale(0.8) brightness(0.5);
+            transform: scale(0.95);
+            pointer-events: none; /* Hindi clickable kapag malabo */
+        }
+        /* Highlight kapag naka-fade in */
+        .flavor-card.highlight {
+            opacity: 1;
+            filter: grayscale(0) brightness(1.2);
+            transform: scale(1.05);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+        }
+
+        .flavor-card:hover { border-color: var(--neon-pink); transform: translateY(-5px); }
+        .flavor-img { width: 100%; height: 240px; object-fit: cover; }
+        .pod-stock-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); padding: 5px 10px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; border: 1px solid var(--gold); z-index: 10; }
+        .f-name { font-weight: bold; font-size: 1.3rem; color: var(--neon-pink); margin: 15px 0 5px 0; }
+        .f-meaning { color: #888; font-style: italic; display: block; margin-bottom: 15px; font-size: 0.9rem; }
+        .order-pod { margin: 0 20px; font-size: 0.8rem; border: 1px solid var(--gcash-blue); color: var(--gcash-blue); text-decoration: none; display: block; padding: 10px; border-radius: 20px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .order-pod:hover { background: var(--gcash-blue); color: #fff; }
+
+        .storm-section, .juice-section { margin-top: 100px; padding: 40px; border-radius: 30px; text-align: center; scroll-margin-top: 100px; }
+        .storm-section { border: 2px solid var(--gold); background: radial-gradient(circle at center, rgba(218, 165, 32, 0.15) 0%, transparent 70%); }
+        .juice-section { border: 2px solid var(--ice-blue); background: radial-gradient(circle at center, rgba(0, 242, 254, 0.15) 0%, transparent 70%); }
+        .storm-title { font-family: 'Orbitron'; color: var(--gold); font-size: 2.5rem; text-shadow: 0 0 15px var(--gold); }
+        .juice-title { font-family: 'Orbitron'; color: var(--ice-blue); font-size: 2.5rem; text-shadow: 0 0 15px var(--ice-blue); }
+
+        .flavor-guide-box {
+            text-align: left; max-width: 450px; margin: 30px auto;
+            background: rgba(0,0,0,0.7); border: 1px solid var(--ice-blue); padding: 25px; border-radius: 15px;
+        }
+        .flavor-guide-box li { padding: 8px 0; border-bottom: 1px solid rgba(0, 242, 254, 0.1); display: flex; justify-content: space-between; font-size: 0.95rem; }
+        .stock-num { color: var(--ice-blue); font-weight: bold; font-family: 'Orbitron'; }
+
+        .order-btn {
+            display: block; text-decoration: none; background: var(--gold); color: #000;
+            padding: 15px; border-radius: 30px; font-weight: bold; text-align: center;
+            transition: 0.3s; margin-top: 25px; font-family: 'Orbitron'; border: none; width: 100%; cursor: pointer;
+        }
+
+        .reviews-section { margin-top: 100px; padding-bottom: 50px; scroll-margin-top: 100px;}
+        .reviews-title { 
+            text-align: center; 
+            font-family: 'Orbitron'; 
+            color: var(--gold); 
+            letter-spacing: 5px; 
+            margin-bottom: 40px; 
+            font-size: 1.8rem;
+        }
+        .review-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+        }
+        .review-card { 
+            background: #0d0d0d; 
+            border: 1px solid #222; 
+            padding: 30px; 
+            border-radius: 20px; 
+            transition: 0.3s;
+        }
+        .stars { 
+            color: #ffcc00; 
+            display: block; 
+            margin-bottom: 15px; 
+            font-size: 1.2rem; 
+        }
+        .review-text { 
+            color: #ffffff; 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+            margin-bottom: 20px;
+        }
+        .reviewer-name { 
+            display: block; 
+            font-family: 'Orbitron'; 
+            font-size: 0.9rem; 
+            color: #00f2fe; 
+            font-weight: bold;
+        }
+
+        .messenger-fab {
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background: #0084FF; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5); z-index: 9999; cursor: pointer; text-decoration: none;
+        }
+
+        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); }
+        .modal-content { background: #111; margin: 12% auto; padding: 25px; border: 2px solid var(--gold); width: 85%; max-width: 350px; border-radius: 25px; text-align: center; position: relative; }
+        .close-x { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 25px; cursor: pointer; }
+        .choice-card { background: #1a1a1a; border: 1px solid #333; padding: 15px; border-radius: 15px; cursor: pointer; margin-top: 15px; font-family: 'Orbitron'; font-size: 0.9rem; }
+        .qr-img-compact { width: 220px; height: 220px; margin: 15px auto; border: 5px solid #fff; border-radius: 10px; display: block; }
+
+        @media screen and (max-width: 600px) {
+            header h1 { font-size: 2rem; letter-spacing: 5px; }
+            .v4-luxury { padding: 20px; border-radius: 25px; }
+            .v4-info h2 { font-size: 1.8rem; }
+            .flavor-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .flavor-img { height: 160px; }
+            .f-name { font-size: 1rem; }
+            .f-meaning { font-size: 0.75rem; }
+            .order-pod { margin: 0 10px; padding: 8px; font-size: 0.7rem; }
+            .container { padding: 10px; }
+            .search-section { padding: 15px; }
+            input { width: 80%; }
+            .stamp-slot { width: 28px; height: 28px; font-size: 0.6rem; }
+            .storm-title, .juice-title { font-size: 1.8rem; }
+            .qr-img-compact { width: 180px; height: 180px; }
+            .site-logo { width: 60px; }
+        }
+    </style>
+</head>
+<body id="home-top">
+
+<div class="announcement-bar">
+    Stamps are updated every 24 hours. Message Alister for real-time verification.
+</div>
+
+<nav class="nav-menu">
+    <a href="#home-top">HOME</a>
+    <a href="#loyalty">LOYALTY</a>
+    <a href="#battery">BATTERY</a>
+    <a href="#pods">PODS</a>
+    <a href="#cartridge">CARTRIDGE</a>
+    <a href="#juice">JUICE</a>
+    <a href="#feedback">FEEDBACK</a>
+</nav>
+
+<div class="container">
+    <header>
+        <img src="logo.jpg" alt="Vape Vault Logo" class="site-logo">
+        <h1>BLACK<span>EDITION</span></h1>
+        <p style="color:var(--gold); letter-spacing: 5px;">ALISTER PAGUIRIGAN | ELITE HUB</p>
+    </header>
+
+    <section class="search-section" id="loyalty">
+        <h2 style="font-family:'Orbitron'; color:var(--gold);">LOYALTY STAMP TRACKER</h2>
+        <div class="search-box">
+            <input type="text" id="userInput" placeholder="Full Name o Admin PW">
+            <button class="search-btn" onclick="processInput()">CHECK STATUS</button>
+        </div>
+        <div id="result-display"></div>
+    </section>
+
+    <section class="v4-luxury" id="battery">
+        <div class="v4-visuals"><img src="v4-battery.jpg" alt="V4 Battery"></div>
+        <div class="v4-info">
+            <div style="background: var(--gold); color: #000; padding: 5px 12px; border-radius: 5px; font-weight: 900; font-size: 0.8rem; font-family: 'Orbitron'; display: inline-block; margin-bottom: 5px;">✨ LATEST RELEASE</div>
+            <div style="margin: 5px 0 15px 0; display: block;">
+                <span style="font-family:'Orbitron'; font-size:0.7rem; color:var(--neon-pink); font-weight:bold; display:block; margin-bottom:5px;">⚠️ LIMITED STOCK:</span>
+                <div class="stock-tag">MIDNIGHT BLACK (1)</div>
+                <div class="stock-tag">CHROME SILVER (4)</div>
+                <div class="stock-tag">ROYAL GOLD (1)</div>
+                <div class="stock-tag sold-out-tag">RACER RED (SOLD OUT)</div>
+            </div>
+            <h2>BLACK TEO V4 BATTERY</h2>
+            <div class="price-tag" style="font-size: 1.5rem; color: var(--gold); border-color: var(--gold);">₱430.00</div>
+            <span class="compatibility-glow">⚡ UNIVERSAL COMPATIBILITY: FITS ANY POD BRAND & V2-V4 SERIES</span>
+            <div class="manual-box">
+                <h4>OPERATION MANUAL:</h4>
+                <p>• Press button 5 times to turn ON/OFF.<br>• Press once to adjust power (Blue = NORM).<br>• Two red lights = BOOST mode.</p>
+            </div>
+            <button class="order-btn" onclick="openModal()">ORDER NOW</button>
+        </div>
+    </section>
+
+    <div class="quiz-section">
+        <p style="font-family:'Orbitron'; font-size: 0.8rem; color:var(--ice-blue);">NEED HELP? FIND YOUR VIBE:</p>
+        <button class="quiz-btn" onclick="filterFlavors('sweet')">🍭 SWEET & FRUITY</button>
+        <button class="quiz-btn" onclick="filterFlavors('menthol')">❄️ EXTRA MENTHOL</button>
+        <button class="quiz-btn" onclick="filterFlavors('all')">🔄 SHOW ALL</button>
+    </div>
+
+    <h2 id="pods" style="text-align:center; font-family:'Orbitron'; margin-top:40px; letter-spacing: 5px; scroll-margin-top: 100px;">BLACK EDITION PODS COLLECTION</h2>
+    <div class="flavor-grid" id="pods-grid">
+        <div class="flavor-card" data-type="sweet"><div class="pod-stock-badge">8 IN STOCK</div><img src="matcha.jpg" class="flavor-img"><div class="f-name">Green Tokyo</div><span class="f-meaning">Matcha</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+        <div class="flavor-card" data-type="menthol"><div class="pod-stock-badge">7 IN STOCK</div><img src="grapes.jpg" class="flavor-img"><div class="f-name">Trouble Purple</div><span class="f-meaning">Grapes</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+        <div class="flavor-card" data-type="sweet"><div class="pod-stock-badge">7 IN STOCK</div><img src="blackcurrant.jpg" class="flavor-img"><div class="f-name">Black Wave</div><span class="f-meaning">Black Currant</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+        <div class="flavor-card" data-type="sweet"><div class="pod-stock-badge">7 IN STOCK</div><img src="lychee.jpg" class="flavor-img"><div class="f-name">Cheer Blast</div><span class="f-meaning">Lychee</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+        <div class="flavor-card" data-type="menthol"><div class="pod-stock-badge">9 IN STOCK</div><img src="watermelon.jpg" class="flavor-img"><div class="f-name">Red Pulp</div><span class="f-meaning">Watermelon</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+        <div class="flavor-card" data-type="sweet"><div class="pod-stock-badge">9 IN STOCK</div><img src="banana.jpg" class="flavor-img"><div class="f-name">Ice Monkey</div><span class="f-meaning">Banana</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+        <div class="flavor-card" data-type="menthol"><div class="pod-stock-badge">6 IN STOCK</div><img src="yakult.jpg" class="flavor-img"><div class="f-name">Bacteria Monster</div><span class="f-meaning">Yakult</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+        <div class="flavor-card" data-type="sweet"><div class="pod-stock-badge">8 IN STOCK</div><img src="strawberry.jpg" class="flavor-img"><div class="f-name">Very Baguio</div><span class="f-meaning">Strawberry</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+        <div class="flavor-card" data-type="sweet"><div class="pod-stock-badge">8 IN STOCK</div><img src="mango.jpg" class="flavor-img"><div class="f-name">Yellow Summer</div><span class="f-meaning">Mango</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+        <div class="flavor-card" data-type="sweet"><div class="pod-stock-badge">8 IN STOCK</div><img src="mixedberry.jpg" class="flavor-img"><div class="f-name">Verymore</div><span class="f-meaning">Mixed Berry</span><a onclick="openModal()" class="order-pod">ORDER NOW</a></div>
+    </div>
+
+    <section class="storm-section" id="cartridge">
+        <h2 class="storm-title">STORM</h2>
+        <p style="color: var(--gold); font-family: 'Orbitron'; letter-spacing: 2px;">NEW! V2 CARTRIDGE REFILLABLE</p>
+        <div class="price-tag" style="font-size: 1.5rem; color: var(--gold); border-color: var(--gold);">₱280.00</div>
+        <div style="max-width:300px; margin: auto; position:relative;">
+            <div class="pod-stock-badge" style="border-color: var(--gold);">9 AVAILABLE</div>
+            <img src="storm-v2.jpg" class="flavor-img" style="width:100%; border-radius: 15px;">
+            <button class="order-btn" style="background:var(--gold);" onclick="openModal()">ORDER NOW</button>
+        </div>
+    </section>
+
+    <section class="juice-section" id="juice">
+        <h2 class="juice-title">ICE FORMULA</h2>
+        <p style="color: var(--ice-blue); font-family: 'Orbitron'; letter-spacing: 2px;">TOTAL STOCK: 10 PCS</p>
+        <div class="price-tag" style="font-size: 1.5rem; color: var(--ice-blue); border-color: var(--ice-blue);">₱300.00</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center;">
+            <img src="ice-formula.jpg" class="flavor-img" style="max-width:250px; border-radius: 15px;">
+            <div class="flavor-guide-box">
+                <h4 style="font-family:'Orbitron'; color:var(--ice-blue); margin-top:0;">AVAILABLE FLAVORS:</h4>
+                <ul>
+                    <li><span>Pink Ice (Strawberry)</span> <span class="stock-num" style="color:red;">SOLD OUT</span></li>
+                    <li><span>Red Ice (Watermelon)</span> <span class="stock-num">2</span></li>
+                    <li><span>Nedz (Nerdz Candy)</span> <span class="stock-num">7</span></li>
+                    <li><span>Shirota Ice (Yakult)</span> <span class="stock-num">1</span></li>
+                </ul>
+            </div>
+        </div>
+        <button class="order-btn" style="background:var(--ice-blue); color:#000; max-width:300px; margin:20px auto;" onclick="openModal()">ORDER NOW</button>
+    </section>
+
+    <section class="reviews-section" id="feedback">
+        <h2 class="reviews-title">CUSTOMER FEEDBACK</h2>
+        <div class="review-grid">
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Solid delivery, napaka smooth ng transaction!"</p><span class="reviewer-name">— Shine</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Ganda ng design ng V4, head turner sa school."</p><span class="reviewer-name">— Tatat</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"The best pods flavor ever. Black Wave is life!"</p><span class="reviewer-name">— Jonah</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Lakas ng hatak ng boost mode. Highly recommended!"</p><span class="reviewer-name">— Bitoy</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Dito na ko lagi kukuha. Bait ni seller."</p><span class="reviewer-name">— Jasper</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Sulit ang price, quality talaga ang items."</p><span class="reviewer-name">— Christian</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Sobrang ice ng menthol flavors, sarap sa lalamunan."</p><span class="reviewer-name">— Elaiza</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Pang-malakasan yung 25k puffs, tagal maubos."</p><span class="reviewer-name">— Isaac</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Ganda ng loyalty system, malapit na ko magka free!"</p><span class="reviewer-name">— Zharra</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Quick meetup and very professional transactions."</p><span class="reviewer-name">— Rexie</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Very Baguio flavor is super legit. Parang kumakain ng strawberry."</p><span class="reviewer-name">— Luigi</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Safe yung items, balot na balot. Salamat Vault!"</p><span class="reviewer-name">— Mon</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Responsive sa messenger, bilis sumagot sa inquiries."</p><span class="reviewer-name">— Vincent</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"The only vape shop I trust in 2026."</p><span class="reviewer-name">— Jxbert</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"No leak issues, high quality talaga ang build."</p><span class="reviewer-name">— Nush</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Ganda ng pagka-matte ng Midnight Black V4."</p><span class="reviewer-name">— Rho James</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Legit elite hub vibes. Elite talaga ang service."</p><span class="reviewer-name">— Mark</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Dami na namin bumibili dito, trusted shop!"</p><span class="reviewer-name">— Ivy</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Great aesthetic website, very easy to use."</p><span class="reviewer-name">— XClint</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Matcha flavor is underrated, but very good!"</p><span class="reviewer-name">— Trisha</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Smooth hit, zero throat irritation."</p><span class="reviewer-name">— John Rayven</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Order received, exactly as described."</p><span class="reviewer-name">— Enteng</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"The best customer support ever."</p><span class="reviewer-name">— Kai</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Lakas ng flavor ng banana! Panalo."</p><span class="reviewer-name">— Bana</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Recommended seller, mabilis kausap."</p><span class="reviewer-name">— Philip</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Legit na legit ang items dito!"</p><span class="reviewer-name">— Gerald</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Fast and smooth transaction, elite level talaga."</p><span class="reviewer-name">— Leonard</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Ganda ng selection, Black Edition quality."</p><span class="reviewer-name">— Anthony</span></div>
+            <div class="review-card"><span class="stars">★★★★★</span><p class="review-text">"Sulit ang bawat stamp, worth it ang paghihintay."</p><span class="reviewer-name">— Anya</span></div>
+        </div>
+    </section>
+</div>
+
+<a href="https://m.me/Alisterpaguirigan9" class="messenger-fab" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg" style="width:35px; filter:brightness(0) invert(1);">
+</a>
+
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <span class="close-x" onclick="closeModal()">&times;</span>
+        <div id="payment-options">
+            <h3 style="font-family:'Orbitron'; color:var(--gold);">ORDER OPTIONS</h3>
+            <div class="choice-card" onclick="showQR()">📱 GCASH PAYMENT</div>
+            <div class="choice-card" onclick="goToMessenger()">💵 CASH / MEETUP</div>
+        </div>
+        <div id="qr-section" style="display:none;">
+            <h3 style="font-family:'Orbitron'; color:var(--gcash-blue); margin-bottom:5px;">GCASH QR</h3>
+            <p style="font-size:0.75rem; margin:0;">Jen***E G. | 09095052286</p>
+            <img src="qr-code.jpg" class="qr-img-compact">
+            <button class="order-btn" onclick="goToMessenger()" style="background:var(--gcash-blue); color:#fff;">SEND PROOF TO ADMIN</button>
+            <p style="font-size:0.7rem; color:var(--gold); cursor:pointer; margin-top:15px;" onclick="resetModal()">← Back to options</p>
+        </div>
+    </div>
+</div>
+
+<footer style="text-align:center; padding: 50px; color: #444; font-size: 0.8rem;">
+    &copy; 2026 THE VAPE VAULT | ALISTER PAGUIRIGAN
+</footer>
+
+<script>
+    const loyaltyData = {
+        "shine": 1, "tatat": 2, "jonah": 1, "bitoy": 2, "jasper": 3, "christian": 2, "elaiza": 1, "isaac": 4, "zharra": 6, "rexie": 2, "luigi": 2, "mon": 1, "vincent": 3, "jxbert": 4, "nush": 1, "rho james": 2, "mark": 1, "ivy": 1, "xclint": 2, "trisha": 1, "john rayven": 1, "enteng": 1, "kai": 1, "anya": 0, "bana": 1, "philip": 2, "gerald": 1, "leonard": 1, "anthony": 1, "alister paguirigan": 11 
+    };
+
+    function processInput() {
+        const inputRaw = document.getElementById("userInput").value.trim();
+        const input = inputRaw.toLowerCase(); 
+        const display = document.getElementById("result-display");
+        
+        if (!inputRaw) return;
+        display.style.display = "block";
+
+        if (inputRaw === "VAULT2026") {
+            let sortedList = Object.entries(loyaltyData).sort((a, b) => b[1] - a[1]);
+            let list = "<b style='color:var(--gold); font-size:1.1rem;'>🏆 VAULT ELITE RANKING</b><hr style='border:0.5px solid var(--gold); margin:10px 0;'>";
+            sortedList.forEach((user, index) => {
+                let displayName = user[0].split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                list += `<div style='display:flex; justify-content:space-between; padding: 5px 0; border-bottom: 1px solid rgba(218,165,32,0.1); font-size: 0.85rem;'><span>${index + 1}. ${displayName}</span><b style='color:var(--gold)'>${user[1]} / 12</b></div>`;
+            });
+            display.className = "success-res"; display.innerHTML = list; display.style.textAlign = "left"; return;
+        }
+
+        if (loyaltyData.hasOwnProperty(input)) {
+            let s = loyaltyData[input];
+            let html = `<div class="stamp-container">`;
+            for(let i=1; i<=12; i++) { html += `<div class="stamp-slot ${i <= s ? 'stamp-active' : ''}">${i <= s ? '✔' : i}</div>`; }
+            display.className = "success-res"; display.style.textAlign = "center";
+            
+            display.innerHTML = `
+                <div style="color:var(--gold); font-family:'Orbitron'; font-size:1.1rem; margin-bottom:10px;">
+                    ✅ACCESS GRANTED<br>
+                    Customer: <span style="color:#fff;">${inputRaw.toUpperCase()}</span> 
+                    <span style="color:var(--gold); margin-left:10px;">${s} / 12</span>
+                </div>
+                ${html}</div>`;
+        } else {
+            display.className = "error-res";
+            display.innerHTML = "❌ PROFILE NOT FOUND<br><small>Verify your name with Alister to register.</small>";
+        }
+    }
+
+    /* BAGONG FILTER LOGIC: FADE IN/OUT (DIM) LANG */
+    function filterFlavors(type) {
+        const cards = document.querySelectorAll('.flavor-card');
+        
+        cards.forEach(card => {
+            const cardType = card.getAttribute('data-type');
+            
+            if (type === 'all') {
+                // Ibalik lahat sa normal
+                card.classList.remove('dimmed');
+                card.classList.remove('highlight');
+            } else {
+                if (cardType === type) {
+                    // Ito yung target category: Fade In / Highlight
+                    card.classList.remove('dimmed');
+                    card.classList.add('highlight');
+                } else {
+                    // Ito yung hindi kasali: Fade Out / Dim
+                    card.classList.remove('highlight');
+                    card.classList.add('dimmed');
+                }
+            }
+        });
+    }
+
+    function openModal() { document.getElementById('paymentModal').style.display = 'block'; }
+    function closeModal() { document.getElementById('paymentModal').style.display = 'none'; resetModal(); }
+    function showQR() { document.getElementById('payment-options').style.display = 'none'; document.getElementById('qr-section').style.display = 'block'; }
+    function resetModal() { document.getElementById('payment-options').style.display = 'block'; document.getElementById('qr-section').style.display = 'none'; }
+    function goToMessenger() { window.open('https://m.me/Alisterpaguirigan9', '_blank'); }
+    
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('paymentModal')) closeModal();
+    }
+</script>
+
+</body>
+</html>
